@@ -16,14 +16,7 @@ export const obter = (req, res) => {
 
 export const criar = (req, res) => {
   const { nome, email } = req.body ?? {};
-  if (!nome || typeof nome !== "string" || nome.trim().length < 2) {
-    return res
-      .status(400)
-      .json({ erro: "Nome inválido (mínimo 2 caracteres)" });
-  }
-  if (!email || typeof email !== "string" || !email.includes("@")) {
-    return res.status(400).json({ erro: "E-mail inválido" });
-  }
+  
   const novo = { id: proximoId++, nome, email };
   usuarios.push(novo);
   res.status(201).json(novo);
